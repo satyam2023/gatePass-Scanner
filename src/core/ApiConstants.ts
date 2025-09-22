@@ -2,7 +2,7 @@ const APIConstants = {
   axiosCallTimeout: 30000,
   axiosCallRetryCount: 2,
   axiosCallRetryTimeout: 5000,
-  BaseURL: "http://192.168.0.100:3000/v1/",
+  BaseURL: "http://192.168.11.25:3000/v1/",
   GetUser: "users",
   RegisteredGuest: "emp/getEmp/",
   ImgEndPoint:

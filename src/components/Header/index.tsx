@@ -1,4 +1,5 @@
 import { useTheme } from "@react-navigation/native";
+import { palette } from "@theme/themes";
 import AppText from "components/RNText";
 import React from "react";
 import { View, Pressable, ViewStyle } from "react-native";
@@ -36,7 +37,7 @@ const AppHeader = (props: ButtonProps) => {
           justifyContent: "space-between",
         }}
       >
-        <AppText fontSize={20} bold color={colors.white}>
+        <AppText fontSize={20} bold color={palette.white}>
           {props.headerTitle}
         </AppText>
 

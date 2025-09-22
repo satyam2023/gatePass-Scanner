@@ -17,14 +17,14 @@ export const createButtonStyle = (colors: IColors) => {
       fontSize: 16,
       color: colors.white,
       fontFamily: fonts.montserrat.extraBold,
+      textAlign: "center",
+      flex: 1,
     },
     leftIconStyle: {
       height: 22,
       width: 22,
       marginRight: 16,
       resizeMode: "contain",
-      position: "absolute",
-      left: 16,
     },
   });
 };

@@ -1,5 +1,4 @@
 import { ExtendedTheme } from "@react-navigation/native";
-import { ScreenHeight, ScreenWidth } from "libs";
 import {
   StyleSheet,
   StyleProp,
@@ -19,17 +18,19 @@ interface HomeScreenStyles {
 export const style = (theme: ExtendedTheme): HomeScreenStyles => {
   return StyleSheet.create({
     container: {
-      height: ScreenHeight,
-      width: ScreenWidth,
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
     },
     cameraContainer: {
       position: "relative",
       flex: 1,
     },
     permissionContainer: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
+      // flex: 1,
+      // justifyContent: "center",
+      // alignItems: "center",
+      // backgroundColor:'red'
     },
     permissionText: {
       fontSize: 18,

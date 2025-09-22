@@ -1,6 +1,9 @@
-import { useIsFocused, useTheme } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 import React, { useMemo } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  View,
+} from "react-native";
 import {
   Camera,
   CameraDevice,
@@ -10,6 +13,7 @@ import {
 import { localStrings } from "shared/localization";
 import { style } from "./HomeScreen.style";
 import QRScannerOverlay from "./components/qrOverlay";
+import CameraErrorScreen from "components/cameraErrorScreen";
 
 interface HomeScreenProps {
   device?: CameraDevice;
@@ -18,6 +22,7 @@ interface HomeScreenProps {
   cameraError: string;
   onFlashlightToggle?: () => void;
   onCameraError?: (error: CameraRuntimeError) => void;
+  isFocused: boolean;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -27,51 +32,42 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   cameraError = null,
   onFlashlightToggle,
   onCameraError,
+  isFocused,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => style(theme), [theme]);
-  const isFocused = useIsFocused();
-
+  const shouldShowFallback =
+    !device ||
+    !isFocused ||
+    !codeScanner ||
+    cameraError 
   const renderContent = () => {
-    if (cameraError) {
+    if (shouldShowFallback) {
       return (
-        <View style={styles.permissionContainer}>
-          <Text style={styles.permissionText}>{cameraError}</Text>
-        </View>
-      );
-    }
-
-    if (device && codeScanner && isFocused) {
-      return (
-        <View style={StyleSheet.absoluteFill}>
-          <Camera
-            device={device}
-            codeScanner={codeScanner}
-            style={StyleSheet.absoluteFill}
-            onError={onCameraError}
-            photo={false}
-            torch={isFlashlightOn ? "on" : "off"}
-            isActive={true}
-          />
-          <QRScannerOverlay
-            isFlashlightOn={isFlashlightOn}
-            onFlashlightToggle={onFlashlightToggle}
-          />
-        </View>
+        <CameraErrorScreen message= {cameraError || localStrings.initializeCamera}/>
       );
     }
 
     return (
-      <React.Fragment>
-        <ActivityIndicator color={theme?.colors.primary} size={"large"} />
-        <Text style={styles.permissionText}>
-          {localStrings.initializeCamera}
-        </Text>
-      </React.Fragment>
+      <View style={StyleSheet.absoluteFill}>
+        <Camera
+          device={device}
+          codeScanner={codeScanner}
+          style={StyleSheet.absoluteFill}
+          onError={onCameraError}
+          photo={false}
+          torch={isFlashlightOn ? "on" : "off"}
+          isActive={true}
+        />
+        <QRScannerOverlay
+          isFlashlightOn={isFlashlightOn}
+          onFlashlightToggle={onFlashlightToggle}
+        />
+      </View>
     );
   };
 
-  return <React.Fragment>{renderContent()}</React.Fragment>;
+  return <View style={styles.container}>{renderContent()}</View>;
 };
 
 export default HomeScreen;

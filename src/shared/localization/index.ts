@@ -20,6 +20,9 @@ export const localStrings = new LocalizedStrings({
     anandotsav: "Anandotsav 2025",
     successiveDigital: "Successive Digital",
     ticketDetails: "Detalles del boleto",
+        cameraAccessNeeded: "Camera Access Needed",
+    cameraPermissionMsg: "This app requires access to your camera to continue. Please enable camera permissions in your device settings.",
+     checkingPermission:'Checking camera permission...'
   },
   en: {
     boilerPlateHeader: "RN BoilerPlate",
@@ -41,6 +44,10 @@ export const localStrings = new LocalizedStrings({
     anandotsav: "Anandotsav 2025",
     successiveDigital: "Successive Digital",
     ticketDetails: "Ticket Details",
+    cameraAccessNeeded: "Camera Access Needed",
+    cameraPermissionMsg: "This app requires access to your camera to continue. Please enable camera permissions in your device settings.",
+    openSetting:'Open Settings',
+    checkingPermission:'Checking camera permission...'
   },
 });
 

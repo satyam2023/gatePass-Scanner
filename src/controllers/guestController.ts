@@ -1,4 +1,5 @@
 import APIConstants from "core/ApiConstants";
+import { IRegisteredGuestResponse } from "models/GuestController";
 import { IApiResponse } from "models/IApiResponse";
 import { sendGetRequest } from "services/network/Network";
 

@@ -1,34 +1,22 @@
 import { navigate } from "@navigation";
+import { useIsFocused } from "@react-navigation/native";
 import { SCREENS } from "@shared-constants";
-import { logger } from "@utils";
-import React, { useEffect, useState } from "react";
-import { Linking } from "react-native";
+import React, { useState } from "react";
 import {
   CameraRuntimeError,
   CodeScanner,
   useCameraDevice,
-  useCameraPermission,
   useCodeScanner,
 } from "react-native-vision-camera";
 import HomeScreen from "views/home/HomeScreen";
 
 const HomeViewModel: React.FC = () => {
-  const { hasPermission, requestPermission } = useCameraPermission();
   const [isFlashlightOn, setIsFlashlightOn] = useState(false);
   const [cameraError, setCameraError] = useState<string>("");
 
-  const handleCameraPermission = async () => {
-    if (!hasPermission) {
-      try {
-        const permission = await requestPermission();
-        if (!permission) {
-          await Linking.openSettings();
-        }
-      } catch (error) {
-        logger("Error requesting camera permission");
-      }
-    }
-  };
+  const isFocused = useIsFocused();
+
+
   const device = useCameraDevice("back");
 
   const codeScanner: CodeScanner = useCodeScanner({
@@ -49,9 +37,6 @@ const HomeViewModel: React.FC = () => {
     setCameraError(err?.message || "Camera error occurred");
   };
 
-  useEffect(() => {
-    handleCameraPermission();
-  }, []);
 
   return (
     <HomeScreen
@@ -62,6 +47,7 @@ const HomeViewModel: React.FC = () => {
         cameraError,
         onFlashlightToggle: handleFlashlightToggle,
         onCameraError: handleCameraError,
+        isFocused,
       }}
     />
   );
