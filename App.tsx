@@ -8,8 +8,8 @@ import { isAndroid } from "libs";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "redux/store/Store";
 import Navigation from "./src/route";
-import { checkAppUpdateStatus } from "@utils";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import SplashScreen from "react-native-splash-screen";
 
 LogBox.ignoreAllLogs();
 
@@ -34,12 +34,23 @@ const App = () => {
   });
   console.log(netInfo);
   React.useEffect(() => {
-    checkAppUpdateStatus();
     StatusBar.setBarStyle(isDarkMode ? "light-content" : "dark-content");
     if (isAndroid) {
       StatusBar.setBackgroundColor("rgba(0,0,0,0)");
       StatusBar.setTranslucent(true);
     }
+
+    // Handle splash screen for different Android versions
+    const hideSplash = () => {
+      try {
+        SplashScreen.hide();
+      } catch (error) {
+        console.log('SplashScreen hide error:', error);
+      }
+    };
+
+    // Delay to ensure smooth transition
+    setTimeout(hideSplash, 2000);
   }, [scheme, isDarkMode]);
 
   return (
