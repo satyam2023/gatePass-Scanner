@@ -22,6 +22,7 @@ const AppHeader = (props: ButtonProps) => {
         {
           paddingTop: top,
           backgroundColor: colors.primary,
+          width:'100%'
         },
         props?.style,
       ]}

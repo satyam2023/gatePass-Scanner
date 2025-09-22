@@ -13,9 +13,9 @@ const CameraErrorScreen = ({ message }: ICameraErrorprops) => {
   return (
     <React.Fragment>
       <AppHeader headerTitle={localStrings.qrScanner} />
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" ,flexGrow:1,paddingHorizontal:20}}>
         <ActivityIndicator size="large" color={palette.primary} />
-        <TextWrapper style={{ fontSize: 20 }}>{message}</TextWrapper>
+        <TextWrapper style={{ fontSize: 20 ,textAlign:'center'}}>{message}</TextWrapper>
       </View>
     </React.Fragment>
   );
