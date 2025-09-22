@@ -31,7 +31,7 @@ const UserCard: React.FC<UserCardProps> = ({ userDetail }) => {
         displayName={userDetail?.displayName}
         jobtitle={userDetail?.jobtitle}
         registered={userDetail?.registered}
-        attended={userDetail?.attended}
+        attended={userDetail?.checkedInGuest>0}
       />
 
       <DetailsSection
