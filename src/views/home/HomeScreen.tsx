@@ -1,9 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React, { useMemo } from "react";
-import {
-  StyleSheet,
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   Camera,
   CameraDevice,
@@ -23,6 +20,7 @@ interface HomeScreenProps {
   onFlashlightToggle?: () => void;
   onCameraError?: (error: CameraRuntimeError) => void;
   isFocused: boolean;
+  appForeGround: boolean;
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -33,18 +31,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   onFlashlightToggle,
   onCameraError,
   isFocused,
+  appForeGround,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => style(theme), [theme]);
   const shouldShowFallback =
-    !device ||
-    !isFocused ||
-    !codeScanner ||
-    cameraError 
+    !device || !isFocused || !codeScanner || cameraError || !appForeGround;
   const renderContent = () => {
     if (shouldShowFallback) {
       return (
-        <CameraErrorScreen message= {cameraError || localStrings.initializeCamera}/>
+        <CameraErrorScreen
+          message={cameraError || localStrings.initializeCamera}
+        />
       );
     }
 

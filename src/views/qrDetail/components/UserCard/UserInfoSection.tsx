@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { View, Text } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createStyles } from "./style/UserCard.style";
-import { StatusBadgeData } from "./types";
+import { StatusBadgeData } from "models/GuestController";
 
 interface UserInfoSectionProps {
   displayName: string;

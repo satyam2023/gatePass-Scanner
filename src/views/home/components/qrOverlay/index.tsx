@@ -4,6 +4,7 @@ import { useTheme } from "@react-navigation/native";
 import Glyphs from "assets/Glyphs";
 import createStyles from "./Style";
 import { localStrings } from "shared/localization";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface QRScannerOverlayProps {
   isFlashlightOn?: boolean;
@@ -15,7 +16,8 @@ const QRScannerOverlay: React.FC<QRScannerOverlayProps> = ({
   onFlashlightToggle,
 }) => {
   const theme = useTheme();
-  const styles = useMemo(() => createStyles(theme), [theme]);
+  const {bottom}=useSafeAreaInsets();
+  const styles = useMemo(() => createStyles(theme,bottom), [theme,bottom]);
 
   return (
     <View style={styles.overlayContainer}>

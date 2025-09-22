@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { ExtendedTheme } from "@react-navigation/native";
 import { ScreenWidth, ScreenHeight } from "libs";
 
-const createStyles = (theme?: ExtendedTheme) => {
+const createStyles = (theme: ExtendedTheme,bottom:number) => {
   const { colors } = theme;
 
   return StyleSheet.create({
@@ -187,7 +187,7 @@ const createStyles = (theme?: ExtendedTheme) => {
     },
     brandingContainer: {
       alignItems: "center",
-      paddingBottom: 40,
+      paddingBottom: bottom+10,
     },
 
     brandingText: {

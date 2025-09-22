@@ -1,6 +1,7 @@
 import { navigate } from "@navigation";
 import { useIsFocused } from "@react-navigation/native";
 import { SCREENS } from "@shared-constants";
+import { useAppState } from "core/useAppState";
 import React, { useState } from "react";
 import {
   CameraRuntimeError,
@@ -13,6 +14,7 @@ import HomeScreen from "views/home/HomeScreen";
 const HomeViewModel: React.FC = () => {
   const [isFlashlightOn, setIsFlashlightOn] = useState(false);
   const [cameraError, setCameraError] = useState<string>("");
+  const appState = useAppState();
 
   const isFocused = useIsFocused();
 
@@ -37,6 +39,8 @@ const HomeViewModel: React.FC = () => {
     setCameraError(err?.message || "Camera error occurred");
   };
 
+   const appForeGround:boolean=appState === "active";
+
 
   return (
     <HomeScreen
@@ -48,6 +52,7 @@ const HomeViewModel: React.FC = () => {
         onFlashlightToggle: handleFlashlightToggle,
         onCameraError: handleCameraError,
         isFocused,
+        appForeGround,
       }}
     />
   );
