@@ -94,10 +94,10 @@ export function sendPutRequest<T>(url: string, body: any): any {
     .finally(() => {});
 }
 
-export function sendPatchRequest<T>(url: string): any {
+export function sendPatchRequest<T>(url: string, body?: any): any {
   instance.defaults.headers.common.Authorization = token();
   return instance
-    .patch(url, globalConfig)
+    .patch(url, body, globalConfig)
     .then((response: any) => handleResponse<T>(response.data))
     .catch((err: any) => {
       if (err.response === undefined) {

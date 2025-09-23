@@ -1,15 +1,18 @@
+import { goBack } from "@navigation";
 import { useTheme } from "@react-navigation/native";
 import { palette } from "@theme/themes";
+import Glyphs from "assets/Glyphs";
+import PressableImage from "components/pressableImage";
 import AppText from "components/RNText";
 import React from "react";
-import { View, Pressable, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export interface ButtonProps {
   headerTitle: string;
   rightIcon?: React.ReactNode;
-  onRightIconPress?: () => void;
   style?: ViewStyle;
+  isBackButtonVisible?: boolean;
 }
 
 const AppHeader = (props: ButtonProps) => {
@@ -22,7 +25,7 @@ const AppHeader = (props: ButtonProps) => {
         {
           paddingTop: top,
           backgroundColor: colors.primary,
-          width:'100%'
+          width: "100%",
         },
         props?.style,
       ]}
@@ -38,15 +41,30 @@ const AppHeader = (props: ButtonProps) => {
           justifyContent: "space-between",
         }}
       >
-        <AppText fontSize={20} bold color={palette.white}>
-          {props.headerTitle}
-        </AppText>
-
-        {props.rightIcon && (
-          <Pressable onPress={props.onRightIconPress}>
-            {props.rightIcon}
-          </Pressable>
-        )}
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {props?.isBackButtonVisible && (
+            <PressableImage
+              src={Glyphs.BackArrow}
+              onPress={goBack}
+              containerStyle={{ padding: 8 }}
+              imageStyle={{
+                width: 20,
+                height: 20,
+                tintColor: palette.white,
+                marginRight: 5,
+              }}
+            />
+          )}
+          <AppText fontSize={20} bold color={palette.white}>
+            {props.headerTitle}
+          </AppText>
+        </View>
       </View>
     </View>
   );

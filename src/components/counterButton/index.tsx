@@ -1,7 +1,6 @@
 import Glyphs from "assets/Glyphs";
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
-import { localStrings } from "shared/localization";
 import { useTheme } from "@react-navigation/native";
 import { styles } from "./Style";
 import TextWrapper from "components/TextWrapper";
@@ -26,7 +25,8 @@ const CounterButton: React.FC<ICounterButtonProps> = ({
   }, [value]);
 
   const isLimitReached: boolean = inputValue >= limit;
-  const isMinusBtnDisable: boolean = [1, 0].includes(inputValue);
+  const isMinusBtnDisable: boolean =
+    [0].includes(inputValue) || value === inputValue;
 
   const { colors } = useTheme();
   const style = (isDisable?: boolean) => styles(colors, isDisable);
@@ -44,24 +44,25 @@ const CounterButton: React.FC<ICounterButtonProps> = ({
   };
 
   return (
-    <View style={style().container}>
-      <PressableImage
-        src={Glyphs.Minus}
-        onPress={decrement}
-        containerStyle={style(isMinusBtnDisable).incrementDecrementContainer}
-        imageStyle={style().img}
-        isDisable={isMinusBtnDisable}
-      />
-      <TextWrapper style={style().countInput}>
-        {inputValue} {counterText ?? localStrings.guestCheckIn}
-      </TextWrapper>
-      <PressableImage
-        src={Glyphs.Plus}
-        onPress={increment}
-        containerStyle={style(isLimitReached).incrementDecrementContainer}
-        imageStyle={style().img}
-        isDisable={isLimitReached}
-      />
+    <View style={style().counterContainer}>
+      <TextWrapper style={style().counterText}>{counterText}</TextWrapper>
+      <View style={style().container}>
+        <PressableImage
+          src={Glyphs.Minus}
+          onPress={decrement}
+          containerStyle={style(isMinusBtnDisable).incrementDecrementContainer}
+          imageStyle={style().img}
+          isDisable={isMinusBtnDisable}
+        />
+        <TextWrapper style={style().countInput}>{inputValue}</TextWrapper>
+        <PressableImage
+          src={Glyphs.Plus}
+          onPress={increment}
+          containerStyle={style(isLimitReached).incrementDecrementContainer}
+          imageStyle={style().img}
+          isDisable={isLimitReached}
+        />
+      </View>
     </View>
   );
 };

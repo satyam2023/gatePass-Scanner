@@ -8,6 +8,8 @@ interface ICounterButtonStyle {
   countInput: TextStyle;
   incrementDecrementContainer: ViewStyle;
   img: ImageStyle;
+  counterText: TextStyle;
+  counterContainer: ViewStyle;
 }
 
 export const styles = (colors: IColors, isDisable?: boolean) => {
@@ -30,20 +32,34 @@ export const styles = (colors: IColors, isDisable?: boolean) => {
       justifyContent: "center",
       textAlign: "center",
       paddingHorizontal: 14,
+      fontWeight: "800",
     },
     incrementDecrementContainer: {
-      backgroundColor: isDisable ? colors.disableButtonColor : colors.red,
+      backgroundColor: isDisable ? colors.disableButtonColor : colors.primary,
       alignItems: "center",
       justifyContent: "center",
       borderColor: colors.red,
       padding: 10,
       borderRadius: 40,
+      elevation: 10,
     },
     img: {
-      width: 20,
-      height: 20,
+      width: 16,
+      height: 16,
       resizeMode: "contain",
       tintColor: colors.white,
+    },
+    counterText: {
+      fontSize: 16,
+      color: colors.primary,
+      textAlign: "center",
+      marginBottom: 10,
+      fontWeight: "700",
+    },
+    counterContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      marginBottom: 16,
     },
   });
 };

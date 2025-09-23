@@ -1,1 +1,1 @@
-export * from "./detailController";
+export * from "./guestController";

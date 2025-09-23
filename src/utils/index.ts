@@ -108,20 +108,25 @@ export const checkAppUpdateStatus = async () => {
   }
 };
 
-  const emptyUserDetail = {
-    id: '',
-    displayName: 'No Guest Data',
-    email: 'No email available',
-    department: 'No department',
-    jobtitle: 'No job title available',
-    locationName: 'No location set',
-    mobilePhone: 'No phone number',
-    numberOfGuest: 0,
-    checkedInGuest: 0,
-    registered: false,
-    attended: false,
-    profileImageUrl: undefined,
-  };
+const emptyUserDetail = {
+  id: "",
+  displayName: "No Guest Data",
+  email: "No email available",
+  department: "No department",
+  jobtitle: "No job title available",
+  locationName: "No location set",
+  mobilePhone: "No phone number",
+  numberOfGuest: 0,
+  checkedInGuest: 0,
+  registered: false,
+  attended: false,
+  profileImageUrl: undefined,
+  checkedInAdults: 0,
+  checkedInKids: 0,
+  adults: 0,
+  kids: 0,
+  employeeNumber:'000/000/000'
+};
 
 export function getGuestData(guestDetail: IRegisteredGuest | null): UserDetail {
   if (!guestDetail) return emptyUserDetail;
@@ -141,5 +146,10 @@ export function getGuestData(guestDetail: IRegisteredGuest | null): UserDetail {
     attended: guestDetail?.attended ?? emptyUserDetail.attended,
     profileImageUrl:
       guestDetail.profileImageUrl ?? emptyUserDetail.profileImageUrl,
+    checkedInAdults: guestDetail?.checkedInAdults ?? 0,
+    checkedInKids: guestDetail?.checkedInKids ?? 0,
+    adults: guestDetail?.adults ?? 0,
+    kids: guestDetail?.kids ?? 0,
+    employeeNumber:guestDetail?.employeeNumber ?? emptyUserDetail?.employeeNumber
   };
 }

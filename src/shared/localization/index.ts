@@ -20,9 +20,18 @@ export const localStrings = new LocalizedStrings({
     anandotsav: "Anandotsav 2025",
     successiveDigital: "Successive Digital",
     ticketDetails: "Detalles del boleto",
-        cameraAccessNeeded: "Camera Access Needed",
-    cameraPermissionMsg: "This app requires access to your camera to continue. Please enable camera permissions in your device settings.",
-     checkingPermission:'Checking camera permission...'
+    cameraAccessNeeded: "Camera Access Needed",
+    cameraPermissionMsg:
+      "This app requires access to your camera to continue. Please enable camera permissions in your device settings.",
+    checkingPermission: "Checking camera permission...",
+    submit: "Submit",
+    kids: "Kids",
+    adults: "Adults",
+    checkedInGuests: "Checked-In Guests",
+    totalGuests: "Total Guests",
+    mobileNumber: "Mobile Number",
+     checkedInKids: "Check-In Kids",
+    checkedInAdults: "Check-In Adults",
   },
   en: {
     boilerPlateHeader: "RN BoilerPlate",
@@ -45,9 +54,18 @@ export const localStrings = new LocalizedStrings({
     successiveDigital: "Successive Digital",
     ticketDetails: "Ticket Details",
     cameraAccessNeeded: "Camera Access Needed",
-    cameraPermissionMsg: "This app requires access to your camera to continue. Please enable camera permissions in your device settings.",
-    openSetting:'Open Settings',
-    checkingPermission:'Checking camera permission...'
+    cameraPermissionMsg:
+      "This app requires access to your camera to continue. Please enable camera permissions in your device settings.",
+    openSetting: "Open Settings",
+    checkingPermission: "Checking camera permission...",
+    submit: "Submit",
+    kids: "Kids",
+    adults: "Adults",
+    checkedInGuests: "Checked-In Guests",
+    totalGuests: "Total Guests",
+    mobileNumber: "Mobile Number",
+    checkedInKids: "Check-In Kids",
+    checkedInAdults: "Check-In Adults",
   },
 });
 

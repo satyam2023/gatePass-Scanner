@@ -42,7 +42,7 @@ export const createLoaderStyle = () => {
     },
     loadingText: {
       fontFamily: fonts.montserrat.medium,
-      color: colors.red,
+      color: colors.primary,
       fontSize: 14,
       textAlign: "center",
       marginTop: 6,

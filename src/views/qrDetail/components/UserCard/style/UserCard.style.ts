@@ -142,5 +142,11 @@ export const createStyles = (theme: ExtendedTheme & { colors: IColors }) => {
       color: colors.darkGray,
       lineHeight: 18,
     },
+    guestCountText: {
+      paddingHorizontal: 5,
+      fontSize: 16,
+      fontWeight: "700",
+      color: theme.colors.lightTextColor,
+    },
   });
 };

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { RefObject, useMemo } from "react";
 import { View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { createStyles } from "./style/UserCard.style";
@@ -6,20 +6,23 @@ import ProfileSection from "./ProfileSection";
 import UserInfoSection from "./UserInfoSection";
 import DetailsSection from "./DetailsSection";
 import CustomButton from "components/button";
-import { navigate } from "@navigation";
-import { SCREENS } from "@shared-constants";
 import { UserDetail } from "models/GuestController";
+import { ICheckInDetail } from "models/QrDetail";
+import { localStrings } from "shared/localization";
 
 interface UserCardProps {
   userDetail: UserDetail;
+  checkInData: RefObject<ICheckInDetail>;
+  guestCheckInApi: () => Promise<void>;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ userDetail }) => {
+const UserCard: React.FC<UserCardProps> = ({
+  userDetail,
+  checkInData,
+  guestCheckInApi,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
-  const handleConfirm = () => {
-    navigate(SCREENS.HOME);
-  };
   return (
     <View style={styles.container}>
       <ProfileSection
@@ -29,20 +32,22 @@ const UserCard: React.FC<UserCardProps> = ({ userDetail }) => {
 
       <UserInfoSection
         displayName={userDetail?.displayName}
-        jobtitle={userDetail?.jobtitle}
+        jobtitle={userDetail?.employeeNumber}
         registered={userDetail?.registered}
-        attended={userDetail?.checkedInGuest>0}
+        attended={userDetail?.attended}
       />
 
       <DetailsSection
-        department={userDetail?.department}
-        locationName={userDetail?.locationName}
-        email={userDetail?.email}
         mobilePhone={userDetail?.mobilePhone}
         numberOfGuest={userDetail?.numberOfGuest}
         checkedInGuest={userDetail?.checkedInGuest}
+        checkedInAdults={userDetail?.checkedInAdults}
+        checkedInKids={userDetail?.checkedInKids}
+        adults={userDetail?.adults}
+        kids={userDetail?.kids}
+        checkInData={checkInData}
       />
-      <CustomButton onPress={handleConfirm} text={"Confirm"} />
+      <CustomButton onPress={guestCheckInApi} text={localStrings.submit} />
     </View>
   );
 };

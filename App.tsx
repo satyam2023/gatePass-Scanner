@@ -10,6 +10,7 @@ import { persistor, store } from "redux/store/Store";
 import Navigation from "./src/route";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import SplashScreen from "react-native-splash-screen";
+import Loader from "components/loader";
 
 LogBox.ignoreAllLogs();
 
@@ -57,6 +58,7 @@ const App = () => {
     <SafeAreaProvider>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
+          <Loader/>
           <Navigation />
         </PersistGate>
       </Provider>

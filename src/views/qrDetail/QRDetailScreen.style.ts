@@ -11,8 +11,7 @@ export const createStyles = (theme: ExtendedTheme) => {
     },
     scrollContainer: {
       justifyContent: "center",
-      flex: 1,
-      bottom: 32,
+      flex: 1
     },
   });
 };

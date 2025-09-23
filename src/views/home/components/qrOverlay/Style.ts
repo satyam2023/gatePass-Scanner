@@ -13,7 +13,7 @@ const createStyles = (theme: ExtendedTheme,bottom:number) => {
       right: 0,
       bottom: 0,
       zIndex: 1,
-      backgroundColor: "rgba(0, 0, 0, 0.55)",
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
     overlayHeader: {
       flexDirection: "row",

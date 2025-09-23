@@ -14,7 +14,7 @@ const LoaderMainContent: React.FC = () => {
   return (
     <View style={styles.modalContainer}>
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size={"large"} color={palette.red} />
+        <ActivityIndicator size={"large"} color={palette.primary} />
         <TextWrapper style={styles.loadingText}>
           {localStrings.loading}
         </TextWrapper>
@@ -25,7 +25,6 @@ const LoaderMainContent: React.FC = () => {
 
 const Loader: React.FC = () => {
   const loader = useSelector((state: RootState) => state.loader.loaderStatus);
-
   if (!loader) {
     return null;
   }

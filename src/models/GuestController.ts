@@ -26,6 +26,15 @@ export interface IRegisteredGuest {
   attended: boolean;
 }
 
+export interface IGuestCheckInRequest {
+  checkedInAdults: number;
+  checkedInKids: number;
+}
+
+export interface IGuestCheckInResponse {
+  message: string;
+}
+
 export interface UserDetail {
   id: string;
   displayName: string;
@@ -39,6 +48,11 @@ export interface UserDetail {
   registered: boolean;
   attended: boolean;
   profileImageUrl?: string;
+  checkedInAdults: number;
+  checkedInKids: number;
+  adults: number;
+  kids: number;
+  employeeNumber: string;
 }
 
 export interface DetailItemData {
